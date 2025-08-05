@@ -46,7 +46,7 @@ export async function runWeatherPlugin(message: string): Promise<string> {
   if (!lat || !lon || !attribute) {
     return ""; 
   }
-  
+
   const weatherData = await getWeather(lat,lon);
   if (!weatherData) {
     return "";
@@ -55,7 +55,7 @@ export async function runWeatherPlugin(message: string): Promise<string> {
     case "weather":
         return weatherData.weather[0].description;
     case "temperature":
-      return `${weatherData.main.temp}°C`;
+      return `${weatherData.main.temp-273.15}°C`;
     case "humidity":
       return `${weatherData.main.humidity}% humidity`;
     case "pressure":
